@@ -1,31 +1,31 @@
-let express = require('express')
-let bodyParser = require('body-parser') // เพิ่มบรรทัดนี้
+let express = require('express');
+const app = express();
 
-const app = express()
+// Middleware to parse JSON request bodies
+app.use(express.json());
 
+app.get('/status', (req, res) => {
+    res.send('Hello Node.js Server!')
+});
 
-// เพิ่ม 2 บรรทัดนี้เพื่อใช้งาน body-parser
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
-
-app.get('/status', function (req, res) {
-    res.send('Hello nodejs server')
-})
-
-app.get('/hello/:person', function (req, res) {
-    console.log('hello - ' + req.params.person)
-    res.send('say hello with ' + req.params.person)
-})
+app.get('/hello/:name', function (req, res) {
+    console.log('hello - ' + req.params.name)
+    res.send('say hello with ' + req.params.name)
+});
 
 // get user by id
 app.get('/user/:userId', function (req, res) {
-    res.send('ดูข้อมูลผู้ใช้งาน: ' + req.params.userId)
+    res.send('ดูข้อมูลผู้ใช้งาน'+ req.params.userId)
 })
-
+// get all user
+app.get('/menus', function (req, res) {
+    res.send('เรียกข้อมูลผู้ใช้งาน')
+})
 // get all user
 app.get('/users', function (req, res) {
-    res.send('เรียกข้อมูล ผู้ใช้งานทั้งหมด')
+    res.send('เรียกข้อมูลผู้ใช้งานทั้งหมด')
 })
+
 // create user
 app.post('/user/', function (req, res) {
     res.send('ทำการสร้างผู้ใช้งาน: ' + JSON.stringify(req.body))
@@ -40,7 +40,10 @@ app.put('/user/:userId', function (req, res) {
 app.delete('/user/:userId', function (req, res) {
     res.send('ทำการลบผู้ใช้งาน: ' + req.params.userId + ' : ' + JSON.stringify(req.body))
 })
-let port = 8081
-app.listen(port, function () {
-    console.log('server running on ' + port)
-})
+
+
+let port = process.env.PORT || 8081;
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
