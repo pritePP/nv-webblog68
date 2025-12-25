@@ -2,7 +2,10 @@ let express = require('express');
 const app = express();
 
 // Middleware to parse JSON request bodies
-app.use(express.json());
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+
 
 app.get('/status', (req, res) => {
     res.send('Hello Node.js Server!')
