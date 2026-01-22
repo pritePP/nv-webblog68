@@ -1,5 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('node:fs')
+const path = require('node:path')
 const Sequelize = require('sequelize')
 const config = require('../config/config')
 const db = {}
@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
     config.db.database,
     config.db.user,
     config.db.password,
-   config.db.options
+    config.db.options
 )
 
 // โหลดไฟล์ Model ทั้งหมดในโฟลเดอร์นี้อัตโนมัติ
@@ -26,3 +26,4 @@ db.sequelize = sequelize
 db.Sequelize = Sequelize
 
 module.exports = db
+
