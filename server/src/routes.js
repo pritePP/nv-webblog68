@@ -1,4 +1,5 @@
 const UserController = require('./controllers/UserController')
+const UserAuthenController = require('./controllers/UserAuthenController')
 const AuthenticationController = require('./controllers/AuthenticationController')
 
 module.exports = (app) => { 
@@ -16,6 +17,9 @@ module.exports = (app) => {
     // Route สำหรับสมัครสมาชิก
     app.post('/register', AuthenticationController.register)
 
+    app.post('/login', UserAuthenController.login)
+    app.post('/register', UserAuthenController.register)
 }
+
 
 
