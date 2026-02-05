@@ -19,6 +19,16 @@ module.exports = (app) => {
 
     app.post('/login', UserAuthenController.login)
     app.post('/register', UserAuthenController.register)
+
+    const isAuthenController = require('./controllers/isAuthenController')
+    const UserController = require('./controllers/UserController')
+    module.exports = (app) => {
+    // ...
+    // get all user
+    app.get('/users', isAuthenController, UserController.index)
+    // ...
+}
+
 }
 
 

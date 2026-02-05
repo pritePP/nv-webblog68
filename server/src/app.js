@@ -24,3 +24,5 @@ app.get('/hello/:name', function (req, res) {
     console.log('hello - ' + req.params.name)
     res.send('say hello with ' + req.params.name)
 });
+require('./userPassport')
+require('./routes')(app)
